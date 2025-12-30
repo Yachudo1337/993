@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULA_ЖИЗНИ.exe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="essa.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Переопределяем размеры для ГИГАНТСКИХ гифок */
+
+        .life-calc-container {
+            max-width: 1800px; /* Увеличили общий контейнер, чтобы влезли большие гифки */
+            width: 98%;
+        }
+
+        .calculator-layout-wrapper {
+            display: flex;
+            align-items: center; /* Центрируем гифки по вертикали относительно калькулятора */
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .side-gifs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 450px; /* Увеличено в 3 раза (было 150px) */
+            flex-shrink: 0;
+        }
+
+        .matrix-gif {
+            width: 100%;
+            height: auto;
+            border: 2px solid #FF00FF;
+            filter: hue-rotate(290deg) contrast(130%) brightness(0.8);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .center-calc {
+            flex-grow: 1;
+            max-width: 800px; /* Ширина калькулятора остается прежней для удобства */
+        }
+
+        /* Адаптация под средние экраны */
+        @media (max-width: 1600px) {
+            .side-gifs {
+                width: 300px; /* Чуть уменьшаем на не самых широких мониторах */
+            }
+        }
+
+        /* Мобильная версия */
+        @media (max-width: 1000px) {
+            .calculator-layout-wrapper {
+                flex-direction: column;
+            }
+
+            .side-gifs {
+                flex-direction: row;
+                width: 100%;
+                overflow-x: auto;
+            }
+
+                .side-gifs img {
+                    width: 200px;
+                }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="breakcore-background"></div>
+    <div class="glitch-overlay"></div>
+    <img src="file:///C:/Users/Admin/Desktop/%D1%83%D1%87%D0%B5%D0%B1%D0%B0/%D0%9F%D0%B0%D0%BF%D0%BA%D0%B0%20%D1%81%D0%BC%D0%B5%D1%80%D1%82%D0%B8/FullSavebot_1-ezgif.com-rotate.gif" alt="Фоновый GIF" id="breakcore-background">
+    <div class="essay-top-nav">
+        <a href="index.html" class="nav-back-btn glitch-effect">
+            <i class="fas fa-arrow-left"></i>
+            <span>Сbeжatb</span>
+        </a>
+        <a href="formulaFON.html" class="nav-back-btn nav-right">
+            <span>g0d connection</span>
+        </a>
+    </div>
+    <div class="content life-calc-container">
+        <h1 class="main-title" style="text-align: center; font-size: 18px; margin-bottom: 30px;">FоrmуЛA_ЖИЗНИ</h1>
+
+        <div class="calculator-layout-wrapper">
+
+            <div class="side-gifs">
+                <img src="https://egrosyan007.github.io/my-university-site/upictures/%D0%9D%D0%B5%D0%B4%D0%B5%D0%BB%D1%8F.gif" class="matrix-gif">
+                <img src="https://egrosyan007.github.io/my-university-site/upictures/%D0%A1%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8C.gif" class="matrix-gif">
+                <img src="https://egrosyan007.github.io/my-university-site/upictures/%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8C.gif" class="matrix-gif">
+            </div>
+
+            <div class="info-frame glitch-effect center-calc">
+                <div class="mode-selector">
+                    <button class="mode-btn active" onclick="setMode('day', this)">ДЕНЬ</button>
+                    <button class="mode-btn" onclick="setMode('week', this)">НЕДЕЛЯ</button>
+                    <button class="mode-btn" onclick="setMode('month', this)">МЕСЯЦ</button>
+                    <button class="mode-btn" onclick="setMode('year', this)">ГОД</button>
+                </div>
+
+                <p class="text-glitch" style="font-size: 8px; margin-bottom: 10px;">DATA_STREAM: <span id="mode-label" style="color:#00FFFF">ДЕНЬ</span></p>
+
+                <div id="sliders-container" class="param-grid"></div>
+
+                <div class="total-display">
+                    <p style="font-size: 7px; color: #FF00FF;">SYSTEM_STABILITY_INDEX</p>
+                    <div id="final-score" class="glitch-effect" style="font-size: 24px;">0.00</div>
+                    <p id="status-text"></p>
+                </div>
+
+
+            </div>
+
+            <div class="side-gifs">
+                <img src="https://egrosyan007.github.io/my-university-site/upictures/%D0%9D%D0%BE%D1%8F%D0%B1%D1%80%D1%8C.gif" class="matrix-gif">
+                <img src="https://egrosyan007.github.io/my-university-site/upictures/%D0%94%D0%B5%D0%BA%D0%B0%D0%B1%D1%80%D1%8C.gif" class="matrix-gif">
+                <img src="https://egrosyan007.github.io/my-university-site/upictures/%D0%98%D1%82%D0%BE%D0%B3.gif" class="matrix-gif">
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const config = {
+            day: { weights: { sleep: 1.2, food: 1.1, sport: 1.1, work: 1.0, social: 0.9, hobby: 0.9, money: 0.8 }, label: "ДЕНЬ" },
+            week: { weights: { sleep: 1.0, food: 1.0, sport: 1.2, work: 1.3, social: 1.1, hobby: 0.8, money: 1.0 }, label: "НЕДЕЛЯ" },
+            month: { weights: { sleep: 0.9, food: 0.9, sport: 1.0, work: 1.2, social: 1.0, hobby: 1.0, money: 1.5 }, label: "МЕСЯЦ" },
+            year: { weights: { sleep: 0.8, food: 0.8, sport: 1.0, work: 1.1, social: 1.2, hobby: 1.2, money: 2.0 }, label: "ГОД" }
+        };
+
+        const paramNames = {
+            sleep: "СОН", food: "ЕДА", sport: "СПОРТ", work: "УЧЕБА", social: "ЛЮДИ", hobby: "ОТДЫХ", money: "ДЕНЬГИ"
+        };
+
+        let currentMode = 'day';
+
+        function setMode(mode, btn) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('mode-label').innerText = config[mode].label;
+            renderSliders();
+            calculate();
+        }
+
+        function renderSliders() {
+            const container = document.getElementById('sliders-container');
+            const weights = config[currentMode].weights;
+            container.innerHTML = '';
+            for (const key in weights) {
+                container.innerHTML += `
+                                                                <div class="input-row" style="display: grid; grid-template-columns: 160px 1fr 60px; align-items: center; gap: 20px; padding: 10px; border-bottom: 1px solid rgba(255,0,255,0.2);">
+                                                                    <label style="font-size: 8px;">${paramNames[key]} <span style="display:block;color:#FF00FF;font-size:7px;">w_${weights[key]}</span></label>
+                                                                    <input type="range" id="${key}" min="0" max="10" step="0.1" value="5" oninput="calculate()" style="width:100%; accent-color:#00FFFF;">
+                                                                    <span id="${key}_val" style="color:#FFFF00; font-size: 10px; text-align:right;">5.0</span>
+                                                                </div>`;
+            }
+        }
+
+        function calculate() {
+            const weights = config[currentMode].weights;
+            let sumWeighted = 0; let sumWeights = 0;
+            for (const key in weights) {
+                const slider = document.getElementById(key);
+                if (!slider) continue;
+                const val = parseFloat(slider.value);
+                document.getElementById(key + '_val').innerText = val.toFixed(1);
+                sumWeighted += val * weights[key];
+                sumWeights += weights[key];
+            }
+            const index = sumWeighted / sumWeights;
+            const display = document.getElementById('final-score');
+            const status = document.getElementById('status-text');
+            display.innerText = index.toFixed(2);
+            if (index < 4.5) { display.style.color = "#FF0000"; status.innerHTML = "STATUS: CRITICAL"; }
+            else if (index < 6.5) { display.style.color = "#FFFF00"; status.innerHTML = "STATUS: STABLE"; }
+            else { display.style.color = "#00FF00"; status.innerHTML = "STATUS: OPTIMAL"; }
+        }
+
+        window.onload = () => { renderSliders(); calculate(); };
+    </script>
+</body>
+</html>

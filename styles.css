@@ -1,0 +1,505 @@
+/* Здраствуйте, а что вы делаете в моем холодильнике?! */
+
+/*ЛСД ФОН ЗХФЫВАХФЫХАФЫАХФЫХ*/
+@keyframes color-cycle {
+    0% { background-color: #FF00FF; } 
+    10% { background-color: #00FFFF; } 
+    20% { background-color: #FFFF00; } 
+    30% { background-color: #00FF00; } 
+    40% { background-color: #FF0000; } 
+    50% { background-color: #FFFFFF; } 
+    60% { background-color: #FF00FF; }
+    70% { background-color: #00FF00; }
+    80% { background-color: #FFFF00; }
+    90% { background-color: #00FFFF; }
+    100% { background-color: #FF0000; }
+}
+
+
+/*курсор*/
+* {
+    cursor: url("file:///C:/Users/Admin/Desktop/%D1%83%D1%87%D0%B5%D0%B1%D0%B0/New%20folder/5c4e0304b0643bfaaff7f5062c1dcbb9.png"),alias;
+}
+
+
+
+
+/*ЛСД ДВИЖЕНИЯ ФОНА ЗХФЫВАХФЫХАФЫАХФЫХ*/
+@keyframes glitch-bg {
+    0% { background-position: 0 0; filter: hue-rotate(0deg) contrast(150%); }
+    5% { background-position: 20px 0; }
+    10% { background-position: -20px 0; }
+    15% { background-position: 0 20px; }
+    20% { background-position: 0 -20px; filter: hue-rotate(180deg) contrast(200%); }
+    30% { background-position: 20px 20px; }
+    40% { background-position: -20px -20px; }
+    50% { background-position: 0 0; filter: hue-rotate(360deg) contrast(150%); }
+    60% { background-position: 10px 10px; }
+    70% { background-position: -10px -10px; }
+    80% { background-position: 0 0; }
+    90% { background-position: 20px 0; }
+    100% { background-position: -20px 0; }
+}
+
+/* хаотичное движение текста */
+@keyframes text-move-chaos {
+    0%, 100% { transform: translate(0, 0) scaleX(1); }
+    15% { transform: translate(-3px, 1px) scaleX(1.02); }
+    30% { transform: translate(2px, -4px) scaleX(0.98); }
+    45% { transform: translate(-1px, 3px) scaleX(1.01); }
+    60% { transform: translate(4px, -2px) scaleX(0.99); }
+    75% { transform: translate(-2px, -1px) scaleX(1.03); }
+    90% { transform: translate(3px, 2px) scaleX(0.97); }
+}
+
+/* Более быстрое мерцание текста с большим количеством цветов */
+@keyframes text-flash {
+    0%, 100% { color: #FFFF00; text-shadow: 0 0 5px #FFFF00; opacity: 1; }
+    33% { color: #FF00FF; text-shadow: 0 0 5px #FF00FF; opacity: 0.9; }
+    66% { color: #00FF00; text-shadow: 0 0 5px #00FF00; opacity: 1; }
+}
+
+/* Анимация глитча для текста (смещение) */
+@keyframes glitch {
+    0% { clip: rect(33px, 9999px, 99px, 0); transform: skew(-3deg); opacity: 0.8; }
+    20% { clip: rect(81px, 9999px, 16px, 0); transform: skew(4deg); opacity: 0.7; }
+    40% { clip: rect(33px, 9999px, 99px, 0); transform: skew(-5deg); opacity: 0.9; }
+    60% { clip: rect(70px, 9999px, 15px, 0); transform: skew(2deg); opacity: 0.7; }
+    80% { clip: rect(21px, 9999px, 78px, 0); transform: skew(-4deg); opacity: 0.8; }
+    100% { clip: rect(0,0,0,0); transform: skew(0); opacity: 0; }
+}
+
+
+/* ГОВНОШРИФ и плашка на месте */
+
+body {
+    margin: 0;
+    font-family: 'Press Start 2P', monospace;
+    color: #f0f0f0;
+    overflow: auto;
+    background-color: #000000;
+}
+
+/* ВАЖНАЯ ХУЙНЯ, ГИФ РАСТЯГИВАЕТСЯ НА ФУЛЛ ЭКРАН */
+#breakcore-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Применяем обе анимации: цвет + глитч/движение */
+    animation: color-cycle 0.5s infinite alternate, glitch-bg 0.1s infinite linear;
+    z-index: -2;
+    filter: saturate(300%) contrast(200%);
+    opacity: 0.8;
+}
+
+
+
+/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ на фоне */
+.glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Хаотичные разноцветные линии */
+    background: repeating-linear-gradient( 45deg, rgba(255, 0, 0, 0.1), rgba(0, 255, 255, 0.1) 2px, transparent 2px, transparent 5px );
+    z-index: -1;
+    pointer-events: none;
+    animation: fadeIn 0.05s infinite alternate;
+}
+
+/* ======================================= */
+/* 3. КОНТЕНТ (БЕЗ ИЗМЕНЕНИЙ)             */
+/* ======================================= */
+
+.content {
+    width: 100%; height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 0px #000, 3px 3px 0px rgba(255,255,0,0.8);
+}
+
+.main-title {
+    font-size: 8vw; 
+    color: #FF00FF; 
+    text-shadow: 0 0 15px #FF00FF, 0 0 30px #00FFFF, 0 0 40px #FFFF00; 
+    animation: fadeIn 0.3s ease-in-out forwards, text-flash 0.2s infinite alternate, text-move-chaos 0.15s infinite alternate;
+    opacity: 0;
+    letter-spacing: 10px;
+}
+
+/* Информационная плашка */
+.info-frame {
+    background-color: rgba(0, 255, 255, 0.1); 
+    border: 3px solid #00FFFF; 
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.9), inset 0 0 15px rgba(255, 0, 255, 0.7); 
+}
+
+.header-line {
+    border-bottom: 3px double #FFFF00;
+    color: #FFFF00;
+    text-shadow: 0 0 7px #FFFF00;
+    /* text-indent: 35px; */
+}
+
+.text-glitch {
+    animation: text-flash 0.2s infinite alternate, text-move-chaos 0.1s infinite alternate; 
+}
+
+.text-glitch::before {
+    left: -2px;
+    color: #FF00FF;
+    text-shadow: 1px 0 #FF00FF;
+    animation: glitch 0.7s infinite alternate-reverse;
+}
+
+.text-glitch::after {
+    left: 2px;
+    color: #00FFFF;
+    text-shadow: -1px 0 #00FFFF; 
+    animation: glitch 1.2s infinite alternate-reverse;
+}
+
+.glitch-line {
+    background-color: #00FF00; 
+    box-shadow: 0 0 12px #00FF00;
+    animation: text-flash 0.2s infinite alternate;
+}
+
+/* Кнопки */
+.breakcore-button {
+    border: 1px solid #FFFF00; 
+    color: #FF00FF; 
+}
+
+.breakcore-button:hover {
+    background-color: rgba(0, 255, 0, 0.8); 
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 1), 0 0 30px rgba(255, 255, 255, 0.5); 
+}
+
+
+#map {
+    width: 100%; /* Карта займет всю ширину контейнера */
+    max-width: 1000px; /* Максимальная ширина (по желанию) */
+    height: 500px; /* Фиксированная высота */
+    max-height: 70vh; /* Но не более 70% высоты экрана */
+    margin: 0 auto; /* Центрирование */
+    border: 2px solid #ff0066; /* Опционально: в стиле вашего сайта */
+    box-sizing: border-box;
+}
+
+.essay-top-nav {
+    position: fixed; /* Фиксированная позиция, чтобы навигация оставалась на месте */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Полупрозрачный фон */
+    border-bottom: 2px solid #FF00FF;
+    z-index: 10; /* Убеждаемся, что она выше контента */
+    padding: 10px 20px;
+    box-shadow: 0 0 15px #FF00FF;
+    }
+
+.nav-back-btn { /* кнопка слева*/
+    text-decoration: none;
+    color: #FFFF00;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 1px solid #FFFF00;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.1s;
+    text-shadow: 0 0 5px #FFFF00;
+}
+
+    .nav-back-btn:hover {
+        background-color: #FFFF00;
+        color: #000;
+        box-shadow: 0 0 10px #FF00FF;
+    }
+
+    .nav-back-btn i {
+        margin-right: 5px;
+    }
+
+.nav-right {
+    margin-left: 1525px; /* правая кнопка */
+}
+
+.nav-mid {
+    margin-left: 800px; /* правая кнопка */
+}
+
+/* --- LIFE CALCULATOR: WIDE LAYOUT --- */
+.life-calc-container {
+    max-width: 1000px; /* Увеличили общую ширину контейнера */
+    margin: 80px auto 40px auto;
+    padding: 20px;
+}
+
+.mode-selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.mode-btn {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    padding: 12px 5px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #FF00FF;
+    color: #00FFFF;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .mode-btn.active {
+        background: #FFFF00;
+        color: #000;
+        box-shadow: 0 0 15px #FFFF00;
+    }
+
+/* Широкая строка таблицы */
+.input-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 60px; /* 1fr заставляет ползунок растягиваться */
+    align-items: center;
+    gap: 20px;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 0, 255, 0.2);
+}
+
+    .input-row label {
+        font-size: 8px;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+.weight-label {
+    display: block;
+    font-size: 7px;
+    color: #FF00FF;
+    margin-top: 4px;
+}
+
+input[type="range"] {
+    width: 100%; /* Ползунок теперь очень широкий */
+    cursor: crosshair;
+}
+
+.val-num {
+    color: #FFFF00;
+    font-size: 8px;
+    text-align: right;
+}
+
+.total-display {
+    margin-top: 25px;
+    padding: 20px;
+    text-align: center;
+    border: 1px dashed #00FFFF;
+}
+
+#final-score {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+#status-text {
+    font-size: 7px;
+}
+
+
+
+
+
+/* ОБЕРТКА ДЛЯ ТРЕХ КОЛОНОК */
+.calculator-layout-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+/* БОКОВЫЕ ПАНЕЛИ С ГИФКАМИ */
+.side-gifs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 150px; /* Ширина гифок по бокам */
+    flex-shrink: 0;
+}
+
+.matrix-gif {
+    width: 100%;
+    border: 1px solid #FF00FF;
+    filter: hue-rotate(290deg) contrast(130%) brightness(0.7);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+    opacity: 0.8;
+}
+
+/* ЦЕНТРАЛЬНЫЙ КАЛЬКУЛЯТОР */
+.center-calc {
+    flex-grow: 1; /* Калькулятор забирает всё свободное место */
+    max-width: 800px;
+}
+
+/* АДАПТИВНОСТЬ: если экран маленький, гифки уйдут под калькулятор */
+@media (max-width: 1000px) {
+    .calculator-layout-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side-gifs {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+    }
+
+        .side-gifs img {
+            width: 100px;
+        }
+}
+
+
+
+/* ======================================= */
+/* 4. Стили для Музыкальной Игры (Quiz)    */
+/* ======================================= */
+
+/* Основной контейнер терминала */
+.quiz-terminal {
+    width: 95%;
+    max-width: 800px;
+    margin: 100px auto; /* Отступ сверху, чтобы не перекрывала навигация */
+    background: rgba(0, 0, 0, 0.9);
+    border: 4px double #00FFFF;
+    padding: 40px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+/* Счетчик очков */
+.score-counter {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #FFFF00;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #FF00FF;
+}
+
+/* Визуализатор (рамка под текст) */
+.audio-visualizer {
+    height: 60px;
+    border: 1px solid #00FF00;
+    margin: 20px 0;
+    background: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 255, 0, 0.05) 2px, rgba(0, 255, 0, 0.05) 4px );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Сетка кнопок с ответами */
+.options-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две колонки */
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Кнопки ответов */
+.answer-btn {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px; /* Чуть увеличил для читаемости */
+    padding: 20px 10px;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid #00FFFF;
+    color: #00FFFF;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1.5;
+    text-transform: uppercase;
+    word-wrap: break-word; /* Чтобы длинные названия не вылезали */
+}
+
+    .answer-btn:hover:not(:disabled) {
+        background: #00FFFF;
+        color: #000;
+        box-shadow: 0 0 20px #00FFFF;
+        transform: scale(1.02);
+    }
+
+    /* Состояния кнопок (Правильно/Неправильно) */
+    .answer-btn.correct {
+        background: #00FF00 !important;
+        color: #000 !important;
+        border-color: #00FF00 !important;
+        box-shadow: 0 0 25px #00FF00 !important;
+    }
+
+    .answer-btn.wrong {
+        background: #FF0000 !important;
+        color: #fff !important;
+        border-color: #FF0000 !important;
+        box-shadow: 0 0 25px #FF0000 !important;
+    }
+
+    .answer-btn:disabled {
+        cursor: default;
+        opacity: 0.7;
+    }
+
+/* Большая кнопка старта/следующего трека */
+.start-engine-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 25px;
+    font-size: 14px;
+    background: #FFFF00;
+    color: #000;
+    border: none;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #999900;
+    transition: 0.1s;
+}
+
+    .start-engine-btn:active {
+        transform: translateY(4px);
+        box-shadow: 0 2px 0 #999900;
+    }
+
+/* Сообщения статуса */
+#status-msg {
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 20px;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* Адаптивность для мобилок */
+@media (max-width: 600px) {
+    .options-container {
+        grid-template-columns: 1fr; /* На мобильных кнопки в один ряд */
+    }
+
+    .quiz-terminal {
+        padding: 20px;
+        margin-top: 70px;
+    }
+}

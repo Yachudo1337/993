@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <[{%}]> اينالڊو//</title>
+    <link rel="stylesheet" href="stylesNORMFON.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=56880a29-acc8-4d56-a893-833ff0175a27" type="text/javascript"></script>
+    <script>
+        ymaps.ready(init);
+        function init() {
+            var map = new ymaps.Map("map", {
+                center: [48.012015, 37.882214],
+                zoom: 10
+            });
+
+            var multiRoute = new ymaps.multiRouter.MultiRoute({
+                referencePoints: [
+                    [47.676631, 38.077995], // Школа
+                    [47.994061, 37.804125]  // ДонНТУ
+                ],
+                params: {
+                    results: 1,
+                    routingMode: 'driving'
+                }
+            }, {
+                boundsAutoApply: true
+            });
+
+            map.geoObjects.add(multiRoute);
+        }
+    </script>
+</head>
+<body>
+    <div id="breakcore-background"></div>
+
+    <div class="glitch-overlay"></div>
+
+    <img src="https://i.pinimg.com/736x/24/d2/d4/24d2d4445274f6b868223c0fea8b3f38.jpg" alt="Фоновый GIF" id="breakcore-background">
+    <div class="essay-top-nav">
+        <a href="index.html" class="nav-back-btn glitch-effect">
+            <i class="fas fa-arrow-left"></i>
+            <span>Сbeжatb</span>
+        </a>
+        <a href="karta.html" class="nav-back-btn nav-right">
+            <span>g0d connection</span>
+        </a>
+
+    </div>
+
+
+    <section>
+        <div class="essay-scrollable-content">
+            <div class="content">
+
+
+                <div class="info-frame glitch-effect">
+                    <div class="header-line">
+                        <p>
+                            <span style="color:#ff0066;">Яндекс карта</span>
+                            с путём от моей школы до первого корпуса ДонНТУ.
+                        </p>
+
+                        <div id="map" style="width: 100%; height: 500px; max-height: 70vh; border: 1px solid #ff0066;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

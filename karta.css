@@ -1,0 +1,202 @@
+/* Здраствуйте, а что вы делаете в моем холодильнике?! */
+
+/*ЛСД ФОН ЗХФЫВАХФЫХАФЫАХФЫХ*/
+@keyframes color-cycle {
+    0% { background-color: #FF00FF; } 
+    10% { background-color: #00FFFF; } 
+    20% { background-color: #FFFF00; } 
+    30% { background-color: #00FF00; } 
+    40% { background-color: #FF0000; } 
+    50% { background-color: #FFFFFF; } 
+    60% { background-color: #FF00FF; }
+    70% { background-color: #00FF00; }
+    80% { background-color: #FFFF00; }
+    90% { background-color: #00FFFF; }
+    100% { background-color: #FF0000; }
+}
+
+
+/*курсор*/
+* {
+    cursor: url("file:///C:/Users/Admin/Desktop/%D1%83%D1%87%D0%B5%D0%B1%D0%B0/New%20folder/5c4e0304b0643bfaaff7f5062c1dcbb9.png"),alias;
+}
+
+
+
+
+/*ЛСД ДВИЖЕНИЯ ФОНА ЗХФЫВАХФЫХАФЫАХФЫХ*/
+@keyframes glitch-bg {
+    0% { background-position: 0 0; filter: hue-rotate(0deg) contrast(150%); }
+    5% { background-position: 20px 0; }
+    10% { background-position: -20px 0; }
+    15% { background-position: 0 20px; }
+    20% { background-position: 0 -20px; filter: hue-rotate(180deg) contrast(200%); }
+    30% { background-position: 20px 20px; }
+    40% { background-position: -20px -20px; }
+    50% { background-position: 0 0; filter: hue-rotate(360deg) contrast(150%); }
+    60% { background-position: 10px 10px; }
+    70% { background-position: -10px -10px; }
+    80% { background-position: 0 0; }
+    90% { background-position: 20px 0; }
+    100% { background-position: -20px 0; }
+}
+
+/* хаотичное движение текста */
+@keyframes text-move-chaos {
+    0%, 100% { transform: translate(0, 0) scaleX(1); }
+    15% { transform: translate(-3px, 1px) scaleX(1.02); }
+    30% { transform: translate(2px, -4px) scaleX(0.98); }
+    45% { transform: translate(-1px, 3px) scaleX(1.01); }
+    60% { transform: translate(4px, -2px) scaleX(0.99); }
+    75% { transform: translate(-2px, -1px) scaleX(1.03); }
+    90% { transform: translate(3px, 2px) scaleX(0.97); }
+}
+
+/* Более быстрое мерцание текста с большим количеством цветов */
+@keyframes text-flash {
+    0%, 100% { color: #FFFF00; text-shadow: 0 0 5px #FFFF00; opacity: 1; }
+    33% { color: #FF00FF; text-shadow: 0 0 5px #FF00FF; opacity: 0.9; }
+    66% { color: #00FF00; text-shadow: 0 0 5px #00FF00; opacity: 1; }
+}
+
+/* Анимация глитча для текста (смещение) */
+@keyframes glitch {
+    0% { clip: rect(33px, 9999px, 99px, 0); transform: skew(-3deg); opacity: 0.8; }
+    20% { clip: rect(81px, 9999px, 16px, 0); transform: skew(4deg); opacity: 0.7; }
+    40% { clip: rect(33px, 9999px, 99px, 0); transform: skew(-5deg); opacity: 0.9; }
+    60% { clip: rect(70px, 9999px, 15px, 0); transform: skew(2deg); opacity: 0.7; }
+    80% { clip: rect(21px, 9999px, 78px, 0); transform: skew(-4deg); opacity: 0.8; }
+    100% { clip: rect(0,0,0,0); transform: skew(0); opacity: 0; }
+}
+
+
+/* ГОВНОШРИФ и плашка на месте */
+
+body {
+    margin: 0;
+    font-family: 'Press Start 2P', monospace;
+    color: #f0f0f0;
+    overflow: hidden;
+    background-color: #000000;
+}
+
+/* ВАЖНАЯ ХУЙНЯ, ГИФ РАСТЯГИВАЕТСЯ НА ФУЛЛ ЭКРАН */
+#breakcore-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Применяем обе анимации: цвет + глитч/движение */
+    animation: color-cycle 0.5s infinite alternate, glitch-bg 0.1s infinite linear;
+    z-index: -2;
+    filter: saturate(300%) contrast(200%);
+    opacity: 0.8;
+}
+
+
+
+/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ на фоне */
+.glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Хаотичные разноцветные линии */
+    background: repeating-linear-gradient( 45deg, rgba(255, 0, 0, 0.1), rgba(0, 255, 255, 0.1) 2px, transparent 2px, transparent 5px );
+    z-index: -1;
+    pointer-events: none;
+    animation: fadeIn 0.05s infinite alternate;
+}
+
+/* ======================================= */
+/* 3. КОНТЕНТ (БЕЗ ИЗМЕНЕНИЙ)             */
+/* ======================================= */
+
+.content {
+    width: 100%; height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 0px #000, 3px 3px 0px rgba(255,255,0,0.8);
+}
+
+.main-title {
+    font-size: 8vw; 
+    color: #FF00FF; 
+    text-shadow: 0 0 15px #FF00FF, 0 0 30px #00FFFF, 0 0 40px #FFFF00; 
+    animation: fadeIn 0.3s ease-in-out forwards, text-flash 0.2s infinite alternate, text-move-chaos 0.15s infinite alternate;
+    opacity: 0;
+    letter-spacing: 10px;
+}
+
+/* Информационная плашка */
+.info-frame {
+    background-color: rgba(0, 255, 255, 0.1); 
+    border: 3px solid #00FFFF; 
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.9), inset 0 0 15px rgba(255, 0, 255, 0.7); 
+}
+
+.header-line {
+    border-bottom: 3px double #FFFF00; 
+    color: #FFFF00;
+    text-shadow: 0 0 7px #FFFF00;
+}
+
+.text-glitch {
+    animation: text-flash 0.2s infinite alternate, text-move-chaos 0.1s infinite alternate; 
+}
+
+.text-glitch::before {
+    left: -2px;
+    color: #FF00FF;
+    text-shadow: 1px 0 #FF00FF;
+    animation: glitch 0.7s infinite alternate-reverse;
+}
+
+.text-glitch::after {
+    left: 2px;
+    color: #00FFFF;
+    text-shadow: -1px 0 #00FFFF; 
+    animation: glitch 1.2s infinite alternate-reverse;
+}
+
+.glitch-line {
+    background-color: #00FF00; 
+    box-shadow: 0 0 12px #00FF00;
+    animation: text-flash 0.2s infinite alternate;
+}
+
+/* Кнопки */
+.breakcore-button {
+    border: 1px solid #FFFF00; 
+    color: #FF00FF; 
+}
+
+.breakcore-button:hover {
+    background-color: rgba(0, 255, 0, 0.8); 
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 1), 0 0 30px rgba(255, 255, 255, 0.5); 
+}
+
+
+
+#map {
+    height: 500px;
+    margin: 30px;
+    border: 4px solid #d2a679;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
